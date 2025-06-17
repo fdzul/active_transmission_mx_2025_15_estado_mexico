@@ -1,0 +1,91 @@
+---
+title: "Programa de Prevención & Control del Dengue | 2025"
+format: 
+  dashboard:
+      nav-buttons: [twitter, github, facebook]
+theme: custom.scss
+---
+
+```{r setup}
+library(sf)
+mapview::mapviewOptions(default = TRUE,
+                        basemaps.color.shuffle = FALSE)
+if(as.vector(Sys.info()["sysname"]) == "Darwin"){
+load("~/OneDrive/proyects/geocoding_mex/2025/8.RData/denmex_2025.RData")
+} else if(as.vector(Sys.info()["sysname"]) == "Windows"){
+   load("D:\\OneDrive\\proyects\\geocoding_mex\\2024\\8.RData\\denmex_2024.RData")
+} else if(as.vector(Sys.info()["sysname"]) == "Linux"){
+    
+}
+library(magrittr)
+```
+
+
+
+# [**Mapas de Calor**]{style="font-size:8pt"}
+
+::: panel-tabset
+
+
+
+### [**Tejupilco**]{style="color:#990000"}
+
+```{r heatmap_tejupilco}
+z <- z |>
+    dplyr::filter(accuracy != "locality")
+densnv::mp_heatmap(geocoded_datasets = z,
+                   cve_edo = "15",
+                   locality = "Tejupilco de Hidalgo",
+                   status_caso = c(1, 2),
+                   kernel = 1200,
+                   week = c(1:53),
+                   zoom = NULL,
+                   map_type = NULL,
+                   alpha = 0.6,
+                   static = FALSE,
+                   palette = viridis::turbo)
+```
+
+
+
+### [**San Pedro Limón, Tlatlaya**]{style="color:#990000"}
+
+```{r heatmap_tlatlaya}
+z <- z |>
+    dplyr::filter(accuracy != "locality")
+densnv::mp_heatmap(geocoded_datasets = z,
+                   cve_edo = "15",
+                   locality = " San Pedro Limón",
+                   status_caso = c(1, 2),
+                   kernel = 000,
+                   week = c(1:53),
+                   zoom = NULL,
+                   map_type = NULL,
+                   alpha = 0.6,
+                   static = FALSE,
+                   palette = viridis::turbo)
+```
+
+
+### [**Villa Luvianos**]{style="color:#990000"}
+
+```{r heatmap_luvianos}
+z <- z |>
+    dplyr::filter(accuracy != "locality")
+densnv::mp_heatmap(geocoded_datasets = z,
+                   cve_edo = "15",
+                   locality = "Villa Luvianos",
+                   status_caso = c(1, 2),
+                   kernel = 000,
+                   week = c(1:53),
+                   zoom = NULL,
+                   map_type = NULL,
+                   alpha = 0.6,
+                   static = FALSE,
+                   palette = viridis::turbo)
+```
+
+
+
+:::
+
